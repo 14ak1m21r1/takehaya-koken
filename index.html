@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自己実現活動公開研究会 2026｜東京学芸大学附属竹早小学校</title>
+<meta name="description" content="東京学芸大学附属竹早小学校 自己実現活動公開研究会（2026年度）の公式サイトです。公開予定・参加申込についてご案内します。">
+<meta property="og:title" content="自己実現活動公開研究会 2026｜竹早小学校">
+<meta property="og:description" content="子どもの主体性に迫る──教科横断的・探究的な学習活動「自己実現活動」の校内研究会を公開します。参加費1000円（学生無料）。">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎋</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --take-deep: #2c5e4a;
+    --take-mid: #3d7a5f;
+    --take-light: #5a9e7c;
+    --take-pale: #e8f0eb;
+    --take-wash: #f4f8f5;
+    --bark: #6b5b4e;
+    --bark-light: #a89888;
+    --ink: #1e2a24;
+    --text: #2e3d34;
+    --text-sub: #607068;
+    --paper: #fafbfa;
+    --white: #ffffff;
+    --line: #d8e0db;
+    --font-display: 'Shippori Mincho', serif;
+    --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; font-size: 16px; }
+  body {
+    font-family: var(--font-body);
+    color: var(--text); background: var(--paper);
+    line-height: 1.9; -webkit-font-smoothing: antialiased;
+  }
+
+  /* ═══ NAV ═══ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,251,250,0.88);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-inner {
+    max-width: 1080px; margin: 0 auto; padding: 12px 28px;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .nav-logo {
+    font-family: var(--font-display);
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--take-deep); letter-spacing: 0.06em;
+  }
+  .nav-links { display: flex; gap: 24px; list-style: none; }
+  .nav-links a {
+    font-size: 0.75rem; color: var(--text-sub);
+    text-decoration: none; font-weight: 500;
+    letter-spacing: 0.05em; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--take-mid); }
+  .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 4px; }
+  .nav-toggle span { display: block; width: 20px; height: 2px; background: var(--take-deep); margin: 4px 0; transition: 0.3s; }
+
+  /* ═══ HERO ═══ */
+  .hero {
+    min-height: 100vh; min-height: 100svh;
+    display: flex; flex-direction: column;
+    justify-content: center; align-items: center;
+    text-align: center; padding: 100px 28px 80px;
+    position: relative; overflow: hidden;
+    background: linear-gradient(170deg, var(--paper) 0%, var(--take-wash) 40%, var(--take-pale) 100%);
+  }
+  .hero::before, .hero::after {
+    content: ''; position: absolute; top: 0; bottom: 0;
+    width: 1px; opacity: 0.12;
+    background: repeating-linear-gradient(to bottom, var(--take-mid) 0px, var(--take-mid) 80px, transparent 80px, transparent 100px);
+  }
+  .hero::before { left: 12%; }
+  .hero::after  { right: 15%; }
+
+  .hero-badge {
+    display: inline-block; font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.35em; color: var(--take-deep);
+    border: 1.5px solid var(--take-deep); border-radius: 3px;
+    padding: 6px 20px; margin-bottom: 28px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.15s forwards;
+  }
+  .hero-school {
+    font-size: 0.78rem; font-weight: 400;
+    color: var(--text-sub); letter-spacing: 0.1em; margin-bottom: 16px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.3s forwards;
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5.5vw, 3.6rem);
+    font-weight: 700; line-height: 1.4;
+    letter-spacing: 0.08em; color: var(--ink);
+    opacity: 0; animation: fadeUp 0.7s ease 0.45s forwards;
+  }
+  .hero-date {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2.5vw, 1.3rem);
+    font-weight: 600; color: var(--take-deep);
+    letter-spacing: 0.1em; margin-top: 20px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.6s forwards;
+  }
+  .hero-date .day {
+    display: inline-block;
+    background: var(--take-deep); color: var(--white);
+    font-size: 0.72em; padding: 2px 10px;
+    border-radius: 3px; margin-left: 6px;
+    vertical-align: middle; position: relative; top: -1px;
+  }
+  .hero-chips {
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 16px; margin-top: 32px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.75s forwards;
+  }
+  .hero-chip {
+    display: flex; align-items: center; gap: 8px;
+    background: rgba(255,255,255,0.75); border: 1px solid var(--line);
+    border-radius: 6px; padding: 10px 18px;
+    font-size: 0.82rem; color: var(--text);
+  }
+  .chip-label {
+    font-size: 0.65rem; font-weight: 700; letter-spacing: 0.1em;
+    color: var(--white); background: var(--take-deep);
+    border-radius: 3px; padding: 2px 8px;
+  }
+  .hero-cta {
+    margin-top: 40px;
+    opacity: 0; animation: fadeUp 0.7s ease 0.9s forwards;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--take-deep); color: var(--white);
+    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.08em;
+    padding: 16px 40px; border-radius: 5px;
+    text-decoration: none; border: none; cursor: pointer; transition: all 0.25s;
+  }
+  .btn-primary:hover {
+    background: var(--take-mid); transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(44,94,74,0.25);
+  }
+  .btn-primary svg { width: 15px; height: 15px; transition: transform 0.25s; }
+  .btn-primary:hover svg { transform: translateX(3px); }
+  .scroll-hint {
+    position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+    opacity: 0; animation: fadeUp 0.7s ease 1.1s forwards; text-align: center;
+  }
+  .scroll-hint .line {
+    display: block; width: 1px; height: 40px;
+    background: var(--line); margin: 0 auto 6px;
+    position: relative; overflow: hidden;
+  }
+  .scroll-hint .line::after {
+    content: ''; position: absolute; top: -40px; left: 0;
+    width: 1px; height: 40px; background: var(--take-mid);
+    animation: scrollPulse 2.2s ease infinite;
+  }
+  .scroll-hint small { font-size: 0.58rem; letter-spacing: 0.2em; color: var(--text-sub); text-transform: uppercase; }
+
+  /* ═══ SECTIONS ═══ */
+  section { padding: 96px 28px; }
+  .container { max-width: 860px; margin: 0 auto; }
+  .sec-label {
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--take-light); margin-bottom: 12px;
+  }
+  .sec-title {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3.5vw, 2rem);
+    font-weight: 700; line-height: 1.55;
+    letter-spacing: 0.05em; color: var(--ink); margin-bottom: 36px;
+  }
+  .sec-title .bar {
+    display: block; width: 32px; height: 3px;
+    background: var(--take-mid); margin-top: 16px; border-radius: 2px;
+  }
+
+  /* ═══ ABOUT ═══ */
+  .about { background: var(--take-wash); }
+  .about-body { font-size: 0.92rem; line-height: 2.1; max-width: 700px; }
+  .about-body p + p { margin-top: 20px; }
+  .recommend {
+    margin-top: 36px; padding: 28px 32px;
+    background: var(--white); border: 1px solid var(--line); border-radius: 10px;
+  }
+  .recommend-title {
+    font-family: var(--font-display);
+    font-size: 0.95rem; font-weight: 600;
+    color: var(--take-deep); margin-bottom: 16px; letter-spacing: 0.06em;
+  }
+  .recommend-list { list-style: none; }
+  .recommend-list li {
+    font-size: 0.88rem; padding: 6px 0;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .recommend-list li::before {
+    content: '✓'; display: inline-flex;
+    align-items: center; justify-content: center;
+    width: 22px; height: 22px; border-radius: 5px;
+    background: var(--take-pale); color: var(--take-deep);
+    font-size: 0.72rem; font-weight: 700; flex-shrink: 0;
+  }
+
+  /* ═══ PROGRAM ═══ */
+  .program-block {
+    background: var(--white); border: 1px solid var(--line);
+    border-radius: 10px; overflow: hidden; margin-bottom: 20px;
+  }
+  .program-block-header {
+    display: flex; align-items: center; gap: 14px;
+    padding: 18px 24px;
+    background: var(--take-wash); border-bottom: 1px solid var(--line);
+  }
+  .time-badge {
+    font-family: var(--font-display);
+    font-size: 0.82rem; font-weight: 600;
+    color: var(--take-deep); white-space: nowrap;
+  }
+  .block-title {
+    font-size: 0.92rem; font-weight: 600;
+    color: var(--ink); letter-spacing: 0.04em;
+  }
+  .class-grid { display: grid; gap: 0; }
+  .class-row {
+    display: grid; grid-template-columns: 100px 100px 1fr;
+    border-bottom: 1px solid var(--line); font-size: 0.88rem;
+  }
+  .class-row:last-child { border-bottom: none; }
+  .class-row > div { padding: 16px 20px; }
+  .class-row .grade {
+    font-weight: 600; color: var(--take-deep);
+    background: var(--take-wash); display: flex; align-items: center;
+  }
+  .class-row .teacher {
+    font-weight: 500; display: flex; align-items: center;
+    border-right: 1px solid var(--line);
+  }
+  .class-row .collaborator {
+    font-size: 0.82rem; color: var(--text-sub); line-height: 1.7;
+    display: flex; align-items: center;
+  }
+  .collab-role { font-size: 0.72rem; color: var(--bark-light); display: block; }
+  .program-body {
+    padding: 20px 24px; font-size: 0.88rem; line-height: 1.9; color: var(--text);
+  }
+  .sym-theme {
+    font-family: var(--font-display);
+    font-size: 1rem; font-weight: 600;
+    color: var(--ink); margin-bottom: 8px; letter-spacing: 0.04em;
+  }
+  .program-note {
+    font-size: 0.82rem; color: var(--text-sub); font-style: italic;
+  }
+  .kg-info {
+    margin-top: 32px; padding: 24px 28px;
+    background: var(--take-wash); border-radius: 10px;
+    border-left: 4px solid var(--take-light);
+    font-size: 0.85rem; line-height: 1.9; color: var(--text);
+  }
+  .kg-info strong { color: var(--take-deep); font-weight: 600; }
+
+  /* ═══ ACCESS ═══ */
+  .access { background: var(--take-wash); }
+  .access-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+  .access-info dt {
+    font-size: 0.68rem; font-weight: 700;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--take-mid); margin-top: 22px;
+  }
+  .access-info dt:first-child { margin-top: 0; }
+  .access-info dd { font-size: 0.88rem; margin-top: 5px; line-height: 1.85; }
+  .map-frame {
+    border-radius: 10px; overflow: hidden;
+    border: 1px solid var(--line); min-height: 280px;
+  }
+  .map-frame iframe { width: 100%; height: 100%; min-height: 280px; border: none; }
+
+  /* ═══ CTA ═══ */
+  .cta-section { background: var(--take-deep); color: var(--white); text-align: center; }
+  .cta-section .sec-label { color: rgba(255,255,255,0.4); }
+  .cta-section .sec-title { color: var(--white); }
+  .cta-section .sec-title .bar { background: var(--take-light); margin: 16px auto 0; }
+  .cta-text {
+    font-size: 0.9rem; line-height: 2.1;
+    color: rgba(255,255,255,0.72);
+    max-width: 540px; margin: 0 auto 36px;
+  }
+  .btn-cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white); color: var(--take-deep);
+    font-size: 0.88rem; font-weight: 600; letter-spacing: 0.08em;
+    padding: 17px 44px; border-radius: 5px;
+    text-decoration: none; border: none; cursor: pointer; transition: all 0.25s;
+  }
+  .btn-cta:hover {
+    background: var(--take-pale); transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  }
+  .btn-cta svg { width: 15px; height: 15px; transition: transform 0.25s; }
+  .btn-cta:hover svg { transform: translateX(3px); }
+  .cta-fee {
+    font-size: 0.88rem; color: rgba(255,255,255,0.6);
+    margin-top: 20px; letter-spacing: 0.04em;
+  }
+  .cta-fee strong { color: var(--white); font-size: 1.1rem; font-weight: 700; }
+  .cta-contact {
+    margin-top: 32px; padding-top: 28px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    font-size: 0.78rem; color: rgba(255,255,255,0.45); line-height: 2;
+  }
+
+  /* ═══ FOOTER ═══ */
+  footer { padding: 36px 28px; text-align: center; border-top: 1px solid var(--line); }
+  footer p { font-size: 0.7rem; color: var(--text-sub); letter-spacing: 0.05em; line-height: 2; }
+
+  /* ═══ ANIMATIONS ═══ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes scrollPulse { 0% { top: -40px; } 100% { top: 40px; } }
+  .reveal {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ═══ RESPONSIVE ═══ */
+  @media (max-width: 768px) {
+    section { padding: 72px 20px; }
+    .nav-links { display: none; }
+    .nav-toggle { display: block; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: rgba(250,251,250,0.96); backdrop-filter: blur(14px);
+      padding: 20px 28px; gap: 16px;
+      border-bottom: 1px solid var(--line);
+    }
+    .access-grid { grid-template-columns: 1fr; gap: 24px; }
+    .class-row { grid-template-columns: 1fr; }
+    .class-row > div { padding: 10px 20px; border-right: none !important; }
+    .class-row .grade { padding-bottom: 4px; }
+    .class-row .teacher { padding-top: 0; padding-bottom: 4px; }
+    .class-row .collaborator { padding-top: 0; }
+    .class-row { border-bottom: 1px solid var(--line); }
+    .class-row:last-child { border-bottom: none; }
+    .hero-chips { gap: 10px; }
+    .hero-chip { padding: 8px 14px; font-size: 0.78rem; }
+    .recommend { padding: 24px 20px; }
+    .kg-info { padding: 20px; }
+  }
+  @media (max-width: 480px) {
+    .hero-title { letter-spacing: 0.04em; }
+    .program-block-header { flex-direction: column; align-items: flex-start; gap: 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">自己実現活動公開研究会</div>
+    <button class="nav-toggle" aria-label="メニュー" onclick="document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#about" onclick="this.closest('.nav-links').classList.remove('open')">自己実現活動とは</a></li>
+      <li><a href="#program" onclick="this.closest('.nav-links').classList.remove('open')">公開内容</a></li>
+      <li><a href="#access" onclick="this.closest('.nav-links').classList.remove('open')">アクセス</a></li>
+      <li><a href="#apply" onclick="this.closest('.nav-links').classList.remove('open')">参加申込</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">2026年度 自己実現活動</div>
+  <p class="hero-school">東京学芸大学附属竹早小学校・附属幼稚園竹早園舎</p>
+  <h1 class="hero-title">公開研究会</h1>
+  <p class="hero-date">2026年 6月 26日<span class="day">金</span></p>
+  <div class="hero-chips">
+    <div class="hero-chip"><span class="chip-label">会場</span>竹早小学校・竹早園舎</div>
+    <div class="hero-chip"><span class="chip-label">参加費</span>1,000円（学生無料）</div>
+    <div class="hero-chip"><span class="chip-label">時間</span>13:50 – 16:30</div>
+  </div>
+  <div class="hero-cta">
+    <a href="https://forms.office.com/r/PSNPnVPQh5" target="_blank" rel="noopener" class="btn-primary">
+      参加申込はこちら
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    </a>
+  </div>
+  <div class="scroll-hint"><span class="line"></span><small>Scroll</small></div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container reveal">
+    <p class="sec-label">About</p>
+    <h2 class="sec-title">自己実現活動とは<span class="bar"></span></h2>
+    <div class="about-body">
+      <p>文部科学省へ「特別の教育課程」の編成を申請・認可（教育課程特例校）を受けて新設した教科です。</p>
+      <p>子ども自ら課題や問題を見つけ、それを解決していく過程を重視した、教科横断的・総合的で探究的な学習活動です。課題や問題を解決していく過程において、主体的で協働的な姿勢や態度を育成することを目標とするものです。</p>
+    </div>
+    <div class="recommend">
+      <p class="recommend-title">こんな方におすすめ</p>
+      <ul class="recommend-list">
+        <li>子どもの「主体性」について学びたい</li>
+        <li>総合的な学習について知りたい</li>
+        <li>子どもの姿を通して授業を語りたい</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAM -->
+<section id="program">
+  <div class="container reveal">
+    <p class="sec-label">Program</p>
+    <h2 class="sec-title">公開内容<span class="bar"></span></h2>
+
+    <div class="program-block">
+      <div class="program-block-header">
+        <span class="time-badge">13:50 – 14:35</span>
+        <span class="block-title">公開活動</span>
+      </div>
+      <div class="class-grid">
+        <div class="class-row">
+          <div class="grade">1年1組</div>
+          <div class="teacher">早川 光洋</div>
+          <div class="collaborator"><div>東京学芸大学附属世田谷小学校<br><span class="collab-role">齊藤 豊 副校長</span></div></div>
+        </div>
+        <div class="class-row">
+          <div class="grade">4年1組</div>
+          <div class="teacher">原田 雄太</div>
+          <div class="collaborator"><div>伊那市立伊那小学校<br><span class="collab-role">小林 正樹 教諭</span></div></div>
+        </div>
+        <div class="class-row">
+          <div class="grade">6年2組</div>
+          <div class="teacher">平山 秀人</div>
+          <div class="collaborator"><div>お茶の水女子大学附属小学校<br><span class="collab-role">岡田 博元 教諭</span></div></div>
+        </div>
+      </div>
+      <p class="program-note" style="padding: 12px 24px 16px;">※ 授業内容につきましては追って本ページにて公開いたします。</p>
+    </div>
+
+    <div class="program-block">
+      <div class="program-block-header">
+        <span class="time-badge">14:40 – 15:35</span>
+        <span class="block-title">研究協議会</span>
+      </div>
+      <div class="program-body">
+        研究協力の先生も交えて、本時について議論を深めていきます。参会の皆様からもご意見ご質問をお受けいたします。
+      </div>
+    </div>
+
+    <div class="program-block">
+      <div class="program-block-header">
+        <span class="time-badge">15:40 – 16:30</span>
+        <span class="block-title">シンポジウム</span>
+      </div>
+      <div class="program-body">
+        <p class="sym-theme">テーマ「自己実現活動の可能性と課題」</p>
+        研究協力の先生方に本テーマについてお話をしていただきます。
+      </div>
+    </div>
+
+    <div class="kg-info">
+      <strong>附属幼稚園竹早園舎 保育公開</strong><br>
+      当日は12:00より、幼稚園で保育を公開しております。【4・5歳児】<br>
+      ご興味がございましたらぜひご参観ください。<br>
+      13:20頃より10分程度、竹早園舎の保育についてお話をさせていただきます。
+    </div>
+  </div>
+</section>
+
+<!-- ACCESS -->
+<section class="access" id="access">
+  <div class="container reveal">
+    <p class="sec-label">Access</p>
+    <h2 class="sec-title">会場案内<span class="bar"></span></h2>
+    <div class="access-grid">
+      <div class="access-info">
+        <dl>
+          <dt>会場</dt>
+          <dd>東京学芸大学附属竹早小学校<br>東京学芸大学附属幼稚園竹早園舎</dd>
+          <dt>所在地</dt>
+          <dd>〒112-0002<br>東京都文京区小石川4-2-1</dd>
+          <dt>最寄駅</dt>
+          <dd>東京メトロ丸ノ内線「茗荷谷」駅 徒歩10分<br>東京メトロ丸ノ内線・南北線「後楽園」駅 徒歩10分</dd>
+        </dl>
+      </div>
+      <div class="map-frame">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3239.8!2d139.7425!3d35.7145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188c4a6e0c2e7d%3A0x7e8b2c2a15d15c8a!2z5p2x5Lqs5a2m6Iap5aSn5a2m6ZmE5bGe56u55pep5bCP5a2m5qCh!5e0!3m2!1sja!2sjp!4v1700000000000" allowfullscreen="" loading="lazy"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="apply">
+  <div class="container reveal">
+    <p class="sec-label">Entry</p>
+    <h2 class="sec-title">参加申込<span class="bar"></span></h2>
+    <p class="cta-text">
+      教育関係者の方を対象に参加を受け付けています。<br>
+      下記ボタンより申込フォームへお進みください。
+    </p>
+    <a href="https://forms.office.com/r/PSNPnVPQh5" target="_blank" rel="noopener" class="btn-cta">
+      申込フォームへ
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+    </a>
+    <p class="cta-fee">参加費 <strong>1,000円</strong>（学生無料）</p>
+    <div class="cta-contact">
+      【お問い合わせ】東京学芸大学附属竹早小学校 研究部長 曽根朋之<br>
+      TEL 03-3816-8943（お電話はお問い合わせのみとさせていただきます。）
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>東京学芸大学附属竹早小学校 自己実現活動公開研究会<br>© 2026 Tokyo Gakugei University Takehaya Elementary School</p>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
