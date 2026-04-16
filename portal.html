@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light only">
+<meta name="supported-color-schemes" content="light only">
+<title>参加者ポータル｜自己実現活動公開研究会 2026</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎋</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #1e5e45;
+    --green: #2a7d5c;
+    --green-light: #4a9e78;
+    --green-pale: #e6f2ec;
+    --green-wash: #f2f8f5;
+    --ink: #1a2420;
+    --text: #2c3a32;
+    --text-sub: #64776c;
+    --white: #ffffff;
+    --bg: #fafcfb;
+    --line: #d6e0da;
+    --red: #c75040;
+    --font-head: 'Shippori Mincho', serif;
+    --font-body: 'Zen Kaku Gothic New', 'Noto Sans JP', sans-serif;
+  }
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; color-scheme: light; }
+  body {
+    font-family: var(--font-body);
+    font-size: 16px; color: var(--text);
+    background: var(--bg); line-height: 1.9;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ━━ PASSWORD SCREEN ━━ */
+  .pw-screen {
+    position: fixed; inset: 0; z-index: 1000;
+    background: var(--white);
+    display: flex; align-items: center; justify-content: center;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+  }
+  .pw-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+  .pw-box {
+    text-align: center; padding: 32px;
+    max-width: 380px; width: 100%;
+  }
+  .pw-box .lock {
+    width: 48px; height: 48px; border-radius: 50%;
+    background: var(--green-pale); color: var(--green-deep);
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 20px; font-size: 1.2rem;
+  }
+  .pw-box h2 {
+    font-family: var(--font-head);
+    font-size: 1.1rem; font-weight: 600;
+    color: var(--ink); margin-bottom: 6px;
+  }
+  .pw-box p {
+    font-size: 0.8rem; color: var(--text-sub);
+    margin-bottom: 24px;
+  }
+  .pw-input-wrap {
+    display: flex; gap: 8px;
+  }
+  .pw-input {
+    flex: 1; padding: 12px 16px;
+    border: 1px solid var(--line); border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.88rem; outline: none;
+    transition: border-color 0.2s;
+  }
+  .pw-input:focus { border-color: var(--green); }
+  .pw-input.error { border-color: var(--red); }
+  .pw-submit {
+    padding: 12px 20px;
+    background: var(--green-deep); color: var(--white);
+    border: none; border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.84rem; font-weight: 500;
+    cursor: pointer; transition: background 0.2s;
+  }
+  .pw-submit:hover { background: var(--green); }
+  .pw-error {
+    font-size: 0.76rem; color: var(--red);
+    margin-top: 10px; min-height: 1.2em;
+  }
+
+  /* ━━ HEADER ━━ */
+  .header {
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    padding: 16px 28px;
+  }
+  .header-inner {
+    max-width: 900px; margin: 0 auto;
+    display: flex; justify-content: space-between;
+    align-items: center;
+  }
+  .header-title {
+    font-family: var(--font-head);
+    font-size: 0.84rem; font-weight: 600;
+    color: var(--green-deep); letter-spacing: 0.05em;
+  }
+  .header-badge {
+    font-size: 0.68rem; font-weight: 600;
+    color: var(--green); background: var(--green-pale);
+    padding: 4px 12px; border-radius: 100px;
+    letter-spacing: 0.04em;
+  }
+
+  /* ━━ TOC ━━ */
+  .toc {
+    background: var(--white);
+    border-bottom: 1px solid var(--line);
+    padding: 0 28px;
+    overflow-x: auto;
+  }
+  .toc-inner {
+    max-width: 900px; margin: 0 auto;
+    display: flex; gap: 0;
+  }
+  .toc a {
+    display: block; padding: 12px 18px;
+    font-size: 0.74rem; font-weight: 500;
+    color: var(--text-sub); text-decoration: none;
+    letter-spacing: 0.03em;
+    border-bottom: 2px solid transparent;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .toc a:hover {
+    color: var(--green); border-bottom-color: var(--green);
+  }
+
+  /* ━━ MAIN ━━ */
+  .main { max-width: 900px; margin: 0 auto; padding: 0 28px 80px; }
+
+  .section { padding: 48px 0; border-bottom: 1px solid var(--line); }
+  .section:last-child { border-bottom: none; }
+
+  .sec-label {
+    font-size: 0.62rem; font-weight: 600;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--green-light); margin-bottom: 8px;
+  }
+  .sec-title {
+    font-family: var(--font-head);
+    font-size: 1.2rem; font-weight: 700;
+    color: var(--ink); margin-bottom: 24px;
+    letter-spacing: 0.03em;
+  }
+
+  /* ━━ NOTICE ━━ */
+  .notice-list { list-style: none; }
+  .notice-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--line);
+    display: flex; gap: 16px; align-items: flex-start;
+  }
+  .notice-item:last-child { border-bottom: none; }
+  .notice-date {
+    font-size: 0.74rem; font-weight: 500;
+    color: var(--text-sub); white-space: nowrap;
+    min-width: 80px; padding-top: 1px;
+  }
+  .notice-badge {
+    font-size: 0.62rem; font-weight: 600;
+    padding: 2px 8px; border-radius: 3px;
+    letter-spacing: 0.04em; white-space: nowrap;
+  }
+  .notice-badge.important {
+    background: #fce8e6; color: var(--red);
+  }
+  .notice-badge.info {
+    background: var(--green-pale); color: var(--green-deep);
+  }
+  .notice-body {
+    font-size: 0.86rem; line-height: 1.75;
+  }
+  .notice-empty {
+    font-size: 0.86rem; color: var(--text-sub);
+    padding: 16px 0;
+  }
+
+  /* ━━ VIDEO ━━ */
+  .video-wrap {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0; overflow: hidden;
+    border-radius: 8px;
+    background: #000;
+    margin-bottom: 16px;
+  }
+  .video-wrap iframe {
+    position: absolute; top: 0; left: 0;
+    width: 100%; height: 100%; border: none;
+  }
+  .video-caption {
+    font-size: 0.8rem; color: var(--text-sub);
+  }
+
+  /* ━━ FILE LIST ━━ */
+  .file-list { list-style: none; }
+  .file-item {
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px;
+    background: var(--white); border: 1px solid var(--line);
+    border-radius: 8px; margin-bottom: 8px;
+    text-decoration: none; color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .file-item:hover {
+    border-color: var(--green);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  }
+  .file-icon {
+    width: 36px; height: 36px; border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.65rem; font-weight: 700;
+    letter-spacing: 0.02em; flex-shrink: 0;
+    color: var(--white);
+  }
+  .file-icon.pdf { background: #c75040; }
+  .file-icon.doc { background: #2b5797; }
+  .file-icon.form { background: #7b4bbf; }
+  .file-icon.link { background: var(--green); }
+
+  .file-info { flex: 1; min-width: 0; }
+  .file-name {
+    font-size: 0.86rem; font-weight: 500;
+    color: var(--ink);
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+  .file-meta {
+    font-size: 0.72rem; color: var(--text-sub);
+    margin-top: 1px;
+  }
+  .file-arrow {
+    color: var(--line); font-size: 0.8rem;
+    transition: color 0.2s;
+  }
+  .file-item:hover .file-arrow { color: var(--green); }
+
+  .file-empty {
+    font-size: 0.86rem; color: var(--text-sub);
+    padding: 8px 0;
+  }
+
+  /* file group (e.g. per class) */
+  .file-group-title {
+    font-size: 0.78rem; font-weight: 600;
+    color: var(--green-deep); margin: 20px 0 8px;
+    letter-spacing: 0.03em;
+  }
+  .file-group-title:first-child { margin-top: 0; }
+
+  /* ━━ SURVEY SECTION ━━ */
+  .survey-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green-deep); color: var(--white);
+    font-size: 0.86rem; font-weight: 500;
+    letter-spacing: 0.05em;
+    padding: 14px 32px; border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .survey-link:hover {
+    background: var(--green); transform: translateY(-1px);
+  }
+  .survey-link svg { width: 14px; height: 14px; }
+  .survey-note {
+    font-size: 0.78rem; color: var(--text-sub);
+    margin-top: 12px;
+  }
+
+  /* ━━ FOOTER ━━ */
+  footer {
+    padding: 28px; text-align: center;
+    border-top: 1px solid var(--line);
+  }
+  footer p {
+    font-size: 0.68rem; color: var(--text-sub);
+    letter-spacing: 0.04em; line-height: 2;
+  }
+  footer a {
+    color: var(--green); text-decoration: none;
+  }
+  footer a:hover { text-decoration: underline; }
+
+  /* ━━ RESPONSIVE ━━ */
+  @media (max-width: 640px) {
+    .main { padding: 0 20px 60px; }
+    .section { padding: 36px 0; }
+    .notice-item { flex-direction: column; gap: 4px; }
+    .notice-date { min-width: auto; }
+    .file-item { padding: 12px; }
+    .toc a { padding: 10px 14px; font-size: 0.72rem; }
+    .video-wrap { border-radius: 4px; }
+    .pw-box { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ━━ PASSWORD SCREEN ━━ -->
+<div class="pw-screen" id="pwScreen">
+  <div class="pw-box">
+    <div class="lock">🔒</div>
+    <h2>参加者ポータル</h2>
+    <p>参加申込後にお知らせしたパスワードを入力してください。</p>
+    <div class="pw-input-wrap">
+      <input type="password" class="pw-input" id="pwInput" placeholder="パスワード" autocomplete="off">
+      <button class="pw-submit" id="pwSubmit">入る</button>
+    </div>
+    <p class="pw-error" id="pwError"></p>
+  </div>
+</div>
+
+<!-- ━━ HEADER ━━ -->
+<header class="header">
+  <div class="header-inner">
+    <div class="header-title">自己実現活動公開研究会 2026</div>
+    <span class="header-badge">参加者ポータル</span>
+  </div>
+</header>
+
+<!-- ━━ TABLE OF CONTENTS ━━ -->
+<div class="toc">
+  <div class="toc-inner">
+    <a href="#notice">連絡事項</a>
+    <a href="#keynote">基調提案</a>
+    <a href="#plan">指導案</a>
+    <a href="#record">活動記録</a>
+    <a href="#subcommittee">分科会提案</a>
+    <a href="#survey">アンケート</a>
+  </div>
+</div>
+
+<!-- ━━ MAIN CONTENT ━━ -->
+<div class="main">
+
+  <!-- 連絡事項 -->
+  <div class="section" id="notice">
+    <p class="sec-label">Notice</p>
+    <h2 class="sec-title">連絡事項</h2>
+    <ul class="notice-list">
+      <!--
+        ▼ 連絡事項を追加するときは、以下をコピーして書き換えてください。
+        <li class="notice-item">
+          <span class="notice-date">6/20</span>
+          <span class="notice-badge info">お知らせ</span>  ← infoまたはimportant
+          <span class="notice-body">連絡内容をここに書きます。</span>
+        </li>
+      -->
+      <li class="notice-item">
+        <span class="notice-date">6/1</span>
+        <span class="notice-badge info">お知らせ</span>
+        <span class="notice-body">参加者ポータルを開設しました。資料は順次追加していきます。</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- 基調提案 -->
+  <div class="section" id="keynote">
+    <p class="sec-label">Keynote</p>
+    <h2 class="sec-title">基調提案</h2>
+
+    <!-- ▼ YouTube動画を埋め込む場合、srcのURLを差し替えてください -->
+    <!--
+    <div class="video-wrap">
+      <iframe src="https://www.youtube.com/embed/VIDEO_ID" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+    <p class="video-caption">基調提案の映像（限定公開）</p>
+    -->
+
+    <ul class="file-list">
+      <!-- ▼ hrefにGoogle DriveのPDF共有リンクを貼ってください -->
+      <li><a href="#" class="file-item" target="_blank" rel="noopener">
+        <div class="file-icon pdf">PDF</div>
+        <div class="file-info">
+          <div class="file-name">基調提案資料（準備中）</div>
+          <div class="file-meta">PDF・公開前</div>
+        </div>
+        <span class="file-arrow">→</span>
+      </a></li>
+    </ul>
+  </div>
+
+  <!-- 指導案 -->
+  <div class="section" id="plan">
+    <p class="sec-label">Lesson Plan</p>
+    <h2 class="sec-title">指導案</h2>
+
+    <p class="file-group-title">1年1組（早川 光洋）</p>
+    <ul class="file-list">
+      <li><a href="#" class="file-item" target="_blank" rel="noopener">
+        <div class="file-icon pdf">PDF</div>
+        <div class="file-info">
+          <div class="file-name">指導案（準備中）</div>
+          <div class="file-meta">PDF・公開前</div>
+        </div>
+        <span class="file-arrow">→</span>
+      </a></li>
+    </ul>
+
+    <p class="file-group-title">4年1組（原田 雄太）</p>
+    <ul class="file-list">
+      <li><a href="#" class="file-item" target="_blank" rel="noopener">
+        <div class="file-icon pdf">PDF</div>
+        <div class="file-info">
+          <div class="file-name">指導案（準備中）</div>
+          <div class="file-meta">PDF・公開前</div>
+        </div>
+        <span class="file-arrow">→</span>
+      </a></li>
+    </ul>
+
+    <p class="file-group-title">6年2組（平山 秀人）</p>
+    <ul class="file-list">
+      <li><a href="#" class="file-item" target="_blank" rel="noopener">
+        <div class="file-icon pdf">PDF</div>
+        <div class="file-info">
+          <div class="file-name">指導案（準備中）</div>
+          <div class="file-meta">PDF・公開前</div>
+        </div>
+        <span class="file-arrow">→</span>
+      </a></li>
+    </ul>
+  </div>
+
+  <!-- 活動記録 -->
+  <div class="section" id="record">
+    <p class="sec-label">Record</p>
+    <h2 class="sec-title">活動記録</h2>
+
+    <p class="file-empty">事後に公開予定です。</p>
+
+    <!--
+    ▼ Wordファイルを追加する場合：
+    <ul class="file-list">
+      <li><a href="Google DriveのURL" class="file-item" target="_blank" rel="noopener">
+        <div class="file-icon doc">DOC</div>
+        <div class="file-info">
+          <div class="file-name">1年1組 活動記録</div>
+          <div class="file-meta">Word・2026/7/1 追加</div>
+        </div>
+        <span class="file-arrow">→</span>
+      </a></li>
+    </ul>
+    -->
+  </div>
+
+  <!-- 分科会提案 -->
+  <div class="section" id="subcommittee">
+    <p class="sec-label">Subcommittee</p>
+    <h2 class="sec-title">分科会提案</h2>
+
+    <p class="file-empty">事後に公開予定です。</p>
+
+    <!--
+    ▼ PDFを追加する場合：
+    <ul class="file-list">
+      <li><a href="Google DriveのURL" class="file-item" target="_blank" rel="noopener">
+        <div class="file-icon pdf">PDF</div>
+        <div class="file-info">
+          <div class="file-name">分科会提案資料</div>
+          <div class="file-meta">PDF・2026/7/1 追加</div>
+        </div>
+        <span class="file-arrow">→</span>
+      </a></li>
+    </ul>
+    -->
+  </div>
+
+  <!-- アンケート -->
+  <div class="section" id="survey">
+    <p class="sec-label">Survey</p>
+    <h2 class="sec-title">参加者アンケート</h2>
+
+    <!-- ▼ hrefにMicrosoft FormsのURLを貼ってください -->
+    <a href="#" class="survey-link" target="_blank" rel="noopener">
+      アンケートに回答する
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </a>
+    <p class="survey-note">※ 研究会終了後にご回答をお願いいたします。</p>
+  </div>
+
+</div>
+
+<footer>
+  <p>
+    東京学芸大学附属竹早小学校 自己実現活動公開研究会<br>
+    <a href="./index.html">宣伝用サイトに戻る</a>
+  </p>
+</footer>
+
+<script>
+// ━━ PASSWORD ━━
+// パスワードを変更するには下の文字列を差し替えてください。
+// ※ 簡易的な仕組みです。厳密な秘匿には向きません。
+const PASS = 'takehaya2026';
+
+const screen = document.getElementById('pwScreen');
+const input = document.getElementById('pwInput');
+const error = document.getElementById('pwError');
+
+// sessionStorageで同一タブ内はパスワード保持
+if (sessionStorage.getItem('portal_auth') === 'ok') {
+  screen.classList.add('hidden');
+}
+
+document.getElementById('pwSubmit').addEventListener('click', check);
+input.addEventListener('keydown', e => { if (e.key === 'Enter') check(); });
+
+function check() {
+  if (input.value === PASS) {
+    sessionStorage.setItem('portal_auth', 'ok');
+    screen.classList.add('hidden');
+  } else {
+    input.classList.add('error');
+    error.textContent = 'パスワードが違います。';
+    setTimeout(() => { input.classList.remove('error'); error.textContent = ''; }, 2000);
+  }
+}
+</script>
+</body>
+</html>
