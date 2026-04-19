@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
 <title>自己実現活動 公開研究会 2026 | 東京学芸大学附属竹早小学校・竹早園舎</title>
 <meta name="description" content="2026年6月26日(金)、東京学芸大学附属竹早小学校・竹早園舎の自己実現活動公開研究会。テーマ『子どもが学びを自覚的に深める自己実現活動の創造——我事から我ら事へとひらく学びの過程に着目して』。公開授業・研究協議会・シンポジウム。">
 
@@ -20,6 +21,7 @@
    Design tokens
    ========================================================= */
 :root {
+  color-scheme: light;
   --paper:       #f2ede1;
   --paper-deep:  #e7dfcc;
   --paper-shade: #ebe4d2;
@@ -183,7 +185,7 @@ h1, h2, h3, h4 {
 .hero {
   position: relative;
   min-height: 100vh;
-  padding: 7rem var(--gutter) 4rem;
+  padding: 7rem 0 4rem;
   display: grid;
   grid-template-columns: 1fr;
   align-content: center;
@@ -248,10 +250,12 @@ h1, h2, h3, h4 {
 .hero__title-main {
   font-family: var(--serif-jp);
   font-weight: 700;
-  font-size: clamp(2.4rem, 6.2vw, 4.8rem);
-  letter-spacing: 0.05em;
-  line-height: 1.1;
+  font-size: clamp(1.85rem, 6.2vw, 4.8rem);
+  letter-spacing: 0.04em;
+  line-height: 1.2;
   color: var(--ink);
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .hero__theme {
